@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DOM Manipulation Test</title>
+  <style>
+    .box-style {
+      width: 100px;
+      height: 100px;
+      background-color: green;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="header">DOM Manipulation </h1>
+    <button id="addBox">Add Box</button>
+    <button id="alertBtn">Show Alert</button>
+    <button id="linkBtn">Create a link</button>
+    <button id="removeBox">Remove Box</button>
+    <button id="showBoxCount">Show Box Count</button>
+  </div>
+  <script >
+    const parent = document.querySelector(".container");
+    const alertBtn = document.getElementById("alertBtn");
+    const addBtn = document.getElementById("addBox");
+    const removeBtn = document.getElementById("removeBox");
+    const countBtn = document.getElementById("showBoxCount");
+    const linkBtn = document.getElementById("linkBtn");
+    let count = 0;
+    alertBtn.addEventListener("click",() =>{
+        const head_text = document.querySelector(".header");
+        const alert_text = head_text.textContent;
+        alert(alert_text);
+    })
+    addBtn.addEventListener("click", () =>{
+        const newBox = document.createElement("div");
+        newBox.classList.add("box-style");
+        newBox.textContent = "New Box";
+        parent.appendChild(newBox);
+        count++;
+    })
+    removeBtn.addEventListener("click" , ()=>{
+        if(count === 0){
+            alert(`There is no enough boxes to remove`);
+        }
+        else{
+            const remElement = document.querySelector(".box-style");
+        remElement.remove();
+        count--;
+        }
+    })
+    countBtn.addEventListener("click", ()=>{
+        alert(`Box Count: ${count}`);
+    })
+    linkBtn.addEventListener("click" , ()=>{
+        const newLink = document.createElement("a");
+        newLink.textContent = "Click this link to visit " ;
+        newLink.setAttribute("href","https://openai.com/index/chatgpt/");
+        parent.appendChild(newLink);
+        const break_tag = document.createElement("br");
+        newLink.insertAdjacentElement(br)
+    })
+  </script>
+  <!-- 1. Show alert of the text content of the h1 element using class -->
+  <!-- 2. Create a new div and append the child to the container, with the text content New Box-->
+  <!-- 3. Show the number of boxes in an alert -->
+  <!-- 4. Create an <a> element on button click , with text content "Hi There" and set href -->
+</body>
+</html>

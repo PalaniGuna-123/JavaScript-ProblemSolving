@@ -1,0 +1,20 @@
+<div id="one">
+    <h1>Hello</h1>
+</div>
+<script>
+    var div=document.getElementById("one");
+    div.innerHTML="<h1> Bye</h1>"
+
+
+</script>
+
+<h1 class="ok">One</h1>
+<h1 class="ok">Two</h1>
+<h1 class="ok"> Three</h1>
+<script>
+    var div=document.querySelector("ok")
+    for(i=0;i<div.length;i++){
+        console.log(div[i].textContent)
+    }
+</script>
+

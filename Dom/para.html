@@ -1,0 +1,52 @@
+<!-- <p id="til">
+    Hello
+</p>
+
+<script>
+   var para = document.getElementById("one")
+   console.log(para.textContent)
+   para.textContent="Bye"
+</script> -->
+
+
+<h1 id="title">
+    Hello World
+
+</h1>
+<button onclick="change()"> Change</button>
+<script>
+    var title = document.getElementById("title")
+    console.log(title.textContent)
+    function change() {
+        title.textContent = "Bye World"
+    }
+</script><Br></Br>
+
+
+<input type="number" id="num1" value="2">
+<input type="number" id="num2" value="2">
+<button onclick="guna()">ADD</button>
+<p id="result">RESULT</p>
+
+<SCript>
+    //SLECTING INPUT BOX 1
+    //SLECTING INPUT BOX 2
+    let box1 = document.getElementById("num1")
+    let box2 = document.getElementById("num2")
+    //slecting result
+    let result = document.getElementById("result")
+
+
+    function guna() {
+        let box1value = Number(box1.value)
+        let box2value = Number(box2.value)
+
+        let total = box1value + box2value;
+
+        result.textContent = total
+
+    }
+
+
+
+</SCript>

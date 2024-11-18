@@ -1,0 +1,75 @@
+<!-- <input type="number" id="num1">
+<input type="number" id="num2">
+<button onclick="change()">Add</button>
+<p id="result">
+    result
+</p>
+<script>
+    let box1=document.getElementById("num1")
+    let box2=document.getElementById("num2")
+    let ring=document.getElementById("result")
+
+    function change(){
+        let box1value=Number(box1.value);
+        let box2value=Number(box2.value);
+        let total = box1value+box2value;
+        ring.textContent=total;
+        console.log(total);
+        
+    
+
+    }
+
+</script> -->
+
+<h1 id="thala">
+    Hello World
+</h1>
+<button onclick="guna()">Change</button>
+
+<script>
+    var title = document.getElementById("thala")
+    console.log(title.textContent);
+    function guna(){
+        title.textContent="Bye WOrld"
+        
+        
+    }
+</script>
+
+<input id="inputbox" onkeyup="update()">
+
+<h1 id="result"></h1>
+<script>
+    var inputbox=document.getElementById("inputbox")
+    var result =document.getElementById("result")
+    function update(){
+        result.textContent=inputbox.value
+    }
+
+</script>
+
+<button onclick="frog()">Add</button>
+<div id="result1"></div>
+
+<script>
+    var land=document.getElementById("result1");
+    function frog(){
+        let create=document.createElement("h1")
+        create.innerHTML="Guna vision"
+        land.append(create)
+
+    }
+</script>
+
+<button onclick="update()">Add</button>
+<div id="result2"></div>
+<script>
+//select hi
+var div=document.getElementById("result2")
+function update(){
+//create new element
+var listitem=document.createElement("h1")
+listitem.innerHTML="Guna Vision"
+div.append(listitem)}
+</script>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Social Media</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f0f2f5;
+        }
+        h1 {
+            text-align: center;
+            color: #1877f2;
+        }
+        #post-form {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        #post-content {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: vertical;
+        }
+        button {
+            background-color: #1877f2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #166fe5;
+        }
+        .post {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .post-author {
+            font-weight: bold;
+        }
+        .post-date {
+            color: #65676b;
+        }
+        .post-content {
+            margin-bottom: 10px;
+        }
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        .post-actions button {
+            background-color: #e4e6eb;
+            color: #050505;
+        }
+        .post-actions button:hover {
+            background-color: #d8dadf;
+        }
+    </style>
+</head>
+<body>
+    <h1>Simple Social Media</h1>
+    
+    <div id="post-form">
+        <textarea id="post-content" placeholder="What's on your mind?"></textarea>
+        <button onclick="createPost()">Post</button>
+    </div>
+    
+    <div id="posts"></div>
+
+    <script>
+        let posts = [];
+
+        function createPost() {
+            const content = document.getElementById('post-content').value;
+            if (content.trim() === '') return;
+
+            const post = {
+                id: Date.now(),
+                author: 'Anonymous',
+                content: content,
+                date: new Date().toLocaleString(),
+                likes: 0,
+                comments: []
+            };
+
+            posts.unshift(post);
+            document.getElementById('post-content').value = '';
+            renderPosts();
+        }
+
+        function likePost(id) {
+            const post = posts.find(p => p.id === id);
+            if (post) {
+                post.likes++;
+                renderPosts();
+            }
+        }
+
+        function addComment(id) {
+            const post = posts.find(p => p.id === id);
+            if (post) {
+                const comment = prompt('Enter your comment:');
+                if (comment && comment.trim() !== '') {
+                    post.comments.push({
+                        author: 'Anonymous',
+                        content: comment,
+                        date: new Date().toLocaleString()
+                    });
+                    renderPosts();
+                }
+            }
+        }
+
+        function renderPosts() {
+            const postsContainer = document.getElementById('posts');
+            postsContainer.innerHTML = '';
+
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('post');
+                postElement.innerHTML = `
+                    <div class="post-header">
+                        <span class="post-author">${post.author}</span>
+                        <span class="post-date">${post.date}</span>
+                    </div>
+                    <div class="post-content">${post.content}</div>
+                    <div class="post-actions">
+                        <button onclick="likePost(${post.id})">Like (${post.likes})</button>
+                        <button onclick="addComment(${post.id})">Comment (${post.comments.length})</button>
+                    </div>
+                    ${post.comments.map(comment => `
+                        <div class="comment">
+                            <strong>${comment.author}</strong> ${comment.content}
+                            <small>${comment.date}</small>
+                        </div>
+                    `).join('')}
+                `;
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        // Initial render
+        renderPosts();
+    </script>
+</body>

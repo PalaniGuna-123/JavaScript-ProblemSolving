@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+    <button onclick="add()">Add</button>
+    <ul id="Items">
+        <li>Hello
+            <button onclick="deleteItem(event)">Delete</button>
+        </li>
+    </ul>
+    <script>
+        var guna = document.getElementById("Items")
+        var input = document.getElementById("input")
+        function add(){
+            var create=document.createElement("h1")
+            create.innerHTML=input.value+"<button onclick='deleteItem(event)'>Dellete</button>"
+            guna.append(create)
+        }
+        function deleteItem(event){
+            event.target.parentElement.remove()
+        }
+    </script>
+    
+</body>
+</html>
+
+<input type="text" id="input">
+<button onclick="add()">Add</button>
+<ul id="list">
+    <li>hello
+        <button>Delete</button>
+    </li>
+</ul>
+
+<script>
+    var guna=document.getElementById("list")
+    var input=document.getElementById("input")
+    function add(){
+        var create=document.createElement("li")
+        create.innerHTML=input.value
+        guna.append(create)
+    }
+</script>
